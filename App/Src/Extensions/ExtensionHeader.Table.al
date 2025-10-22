@@ -41,8 +41,11 @@ table 80000 "C4BC Extension Header"
             var
                 AssignableRangeHeader: Record "C4BC Assignable Range Header";
                 ExtensionObject: Record "C4BC Extension Object";
-                NoSerisManagement: Codeunit NoSeriesManagement;
-
+#if not CLEAN24
+                NoSeriesManagement: Codeunit NoSeriesManagement;
+#else
+                NoSeries: Codeunit "No. Series";
+#endif
                 ObjectIDsGeneratedErr: Label 'Object IDs are already generated. The assignable range can not be changed.';
             begin
                 if (xRec."Assignable Range Code" <> '') and (Rec."Assignable Range Code" <> xRec."Assignable Range Code") then begin
@@ -55,7 +58,11 @@ table 80000 "C4BC Extension Header"
                 if (Rec.Code = '') and (Rec."Assignable Range Code" <> '') then begin
                     AssignableRangeHeader.Get(Rec."Assignable Range Code");
                     AssignableRangeHeader.TestField("No. Series for Extensions");
-                    Rec.Code := NoSerisManagement.DoGetNextNo(AssignableRangeHeader."No. Series for Extensions", Today, true, true);
+#if not CLEAN24
+                    Rec.Code := NoSeriesManagement.DoGetNextNo(AssignableRangeHeader."No. Series for Extensions", Today, true, true);
+#else
+                    Rec.Code := NoSeries.GetNextNo(AssignableRangeHeader."No. Series for Extensions", Today(), true);
+#endif
                 end;
             end;
         }

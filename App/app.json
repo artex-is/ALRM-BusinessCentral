@@ -12,8 +12,8 @@
   "logo": "Resources/img/ALIDRangeManager.png",
   "dependencies": [],
   "screenshots": [],
-  "platform": "23.0.0.0",
-  "application": "23.0.0.0",
+  "platform": "27.0.0.0",
+  "application": "27.0.0.0",
   "idRanges": [
     {
       "from": 79000,
@@ -26,12 +26,16 @@
     "allowDownloadingSource": true,
     "includeSourceInSymbolFile": true
   },
-  "runtime": "12.0",
+  "runtime": "15.0",
   "target": "Cloud",
   "suppressWarnings": [
-    "AS0084"
+    "AS0084",
+    "AS0092"
   ],
   "features": [
     "TranslationFile"
+  ],
+  "preprocessorSymbols": [
+    "CLEAN24"
   ]
 }

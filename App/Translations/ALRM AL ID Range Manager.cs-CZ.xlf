@@ -19,16 +19,6 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Table C4BC ALRM Setup - Field Minimal API Version - Property Caption</note>
         </trans-unit>
-        <trans-unit id="Table 2349809701 - Field 1846057313 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Object Type Implementation</source><target>Typ implementace Typů Objektů</target>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Table C4BC ALRM Setup - Field Object Type Implementation - Property Caption</note>
-        </trans-unit>
-        <trans-unit id="Table 2349809701 - Field 1846057313 - Property 62802879" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Interface (obsolete),Table</source><target>Interface (obsolete),Table</target>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Table C4BC ALRM Setup - Field Object Type Implementation - Property OptionCaption</note>
-        </trans-unit>
         <trans-unit id="Table 2349809701 - Field 1663593181 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Primary Key</source><target>Primární klíč</target>
           <note from="Developer" annotates="general" priority="2"></note>
@@ -48,6 +38,21 @@
           <source>There are no available field IDs for a new field.</source><target>Neexistují žádná dostupná ID polí.</target>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Table C4BC Assignable Range Header - Method GetNewFieldID - NamedType NoAvailableFieldIDsErr</note>
+        </trans-unit>
+        <trans-unit id="Table 361845431 - Method 3239730671 - NamedType 3507184402" size-unit="char" translate="yes" xml:space="preserve">
+          <source>When Field ID Generation Scope = Extended Object, the Extends Object Name must be specified.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table C4BC Assignable Range Header - Method GetNewFieldID - NamedType MissingExtendsObjectNameErr</note>
+        </trans-unit>
+        <trans-unit id="Table 361845431 - Method 207540190 - NamedType 1947358835" size-unit="char" translate="yes" xml:space="preserve">
+          <source>No assignable range defined for the newly generated field ID. It is programming error.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table C4BC Assignable Range Header - Method InitUsedFieldIDBuffer - NamedType NoAssignableRangeDefinedErr</note>
+        </trans-unit>
+        <trans-unit id="Table 361845431 - Method 3673198372 - NamedType 1947358835" size-unit="char" translate="yes" xml:space="preserve">
+          <source>No assignable range defined for the newly generated object ID. It is programming error.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table C4BC Assignable Range Header - Method InitUsedIDBuffer - NamedType NoAssignableRangeDefinedErr</note>
         </trans-unit>
         <trans-unit id="Table 361845431 - Method 3152277940 - NamedType 3249621263" size-unit="char" translate="yes" xml:space="preserve">
           <source>%1 can not be deleted due to existing related records in %2.</source><target>%1 nemůže být smazáno, protože existuje %2.</target>
@@ -94,6 +99,26 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Table C4BC Assignable Range Header - Field Description - Property Caption</note>
         </trans-unit>
+        <trans-unit id="Table 361845431 - Field 3507019525 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Field ID Generation Scope</source><target>Unikátnost generovaných ID polí</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table C4BC Assignable Range Header - Field Field ID Generation Scope - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 361845431 - Field 3507019525 - Property 62802879" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Global,Extended Object</source><target>Globální,Rozšiřovaný objekt</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table C4BC Assignable Range Header - Field Field ID Generation Scope - Property OptionCaption</note>
+        </trans-unit>
+        <trans-unit id="Table 361845431 - Field 3507019525 - Method 2126772001 - NamedType 2551427998" size-unit="char" translate="yes" xml:space="preserve">
+          <source>This change will impact how field IDs are generated for new fields and cannot be reverted. Are you sure you want to proceed?</source><target>Tato změna ovlivní způsob generování ID polí pro nová pole a nelze ji vrátit zpět. Opravdu chcete pokračovat?</target>
+          <note from="Developer" annotates="general" priority="2">#tr{"cs-CZ": "Tato změna ovlivní způsob generování ID polí pro nová pole a nelze ji vrátit zpět. Opravdu chcete pokračovat?"}</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table C4BC Assignable Range Header - Field Field ID Generation Scope - Method OnValidate - NamedType ConfirmChangeQst</note>
+        </trans-unit>
+        <trans-unit id="Table 361845431 - Field 3507019525 - Method 2126772001 - NamedType 2004540278" size-unit="char" translate="yes" xml:space="preserve">
+          <source>The field ID generation scope can not be changed due to existing extension lines linked to this assignable range.</source><target>Rozsah generování ID polí nelze změnit kvůli existujícím řádkům rozšíření propojených s tímto přiřaditelným rozsahem.</target>
+          <note from="Developer" annotates="general" priority="2">#tr{"cs-CZ": "Rozsah generování ID polí nelze změnit kvůli existujícím řádkům rozšíření propojených s tímto přiřaditelným rozsahem."}</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table C4BC Assignable Range Header - Field Field ID Generation Scope - Method OnValidate - NamedType CannotChangeErr</note>
+        </trans-unit>
         <trans-unit id="Table 361845431 - Field 692597549 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Field Range From</source><target>Rozsah polí od</target>
           <note from="Developer" annotates="general" priority="2"></note>
@@ -103,6 +128,11 @@
           <source>Field Range To</source><target>Rozsah polí do</target>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Table C4BC Assignable Range Header - Field Field Range To - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 361845431 - Field 3090060823 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Fill Field ID Gaps</source><target>Zaplňovat mezery v ID polí</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table C4BC Assignable Range Header - Field Fill Field ID Gaps - Property Caption</note>
         </trans-unit>
         <trans-unit id="Table 361845431 - Field 1155390606 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Fill Object ID Gaps</source><target>Zaplňovat mezery v ID objektů</target>
@@ -204,10 +234,30 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Table C4BC Extension Header - NamedType DeleteHeaderInUsageErr</note>
         </trans-unit>
+        <trans-unit id="Table 791698180 - Field 3906288239 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Alternate Assignable Range Code</source><target>Kód alternativního přiřaditelného rozsahu</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table C4BC Extension Header - Field Alternate Assign. Range Code - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 791698180 - Field 3906288239 - Method 2126772001 - NamedType 3602338819" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Alternate object IDs are already generated. The assignable range can not be changed.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table C4BC Extension Header - Field Alternate Assign. Range Code - Method OnValidate - NamedType AlternateObjectIDsGeneratedErr</note>
+        </trans-unit>
         <trans-unit id="Table 791698180 - Field 2574063315 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Assignable Range Code</source><target>Kód přiřaditelného rozsahu</target>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Table C4BC Extension Header - Field Assignable Range Code - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 791698180 - Field 2574063315 - Method 2126772001 - NamedType 3565566723" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Object IDs are already generated. The assignable range can not be changed.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table C4BC Extension Header - Field Assignable Range Code - Method OnValidate - NamedType ObjectIDsGeneratedErr</note>
+        </trans-unit>
+        <trans-unit id="Table 791698180 - Field 3357424117 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>BC Instance used for Assignable Range</source><target>Instance BC pro přiřaditelný rozsah</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table C4BC Extension Header - Field BC Instance for Assign. Range - Property Caption</note>
         </trans-unit>
         <trans-unit id="Table 791698180 - Field 3004954119 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Code</source><target>Kód</target>
@@ -269,10 +319,25 @@
           <note from="Developer" annotates="general" priority="2">%1 - Name of object that does not meet rules, %2 - template rules</note>
           <note from="Xliff Generator" annotates="general" priority="3">Table C4BC Extension Object - NamedType ObjectNameTemplateRulesErr</note>
         </trans-unit>
+        <trans-unit id="Table 1651714670 - Field 3906288239 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Alternate Assignable Range Code</source><target>Kód alternativního přiřaditelného rozsahu</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table C4BC Extension Object - Field Alternate Assign. Range Code - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 1651714670 - Field 2451232268 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Alternate Object ID</source><target>Alternativní ID objektu</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table C4BC Extension Object - Field Alternate Object ID - Property Caption</note>
+        </trans-unit>
         <trans-unit id="Table 1651714670 - Field 2574063315 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Assignable Range Code</source><target>Kód přiřaditelného rozsahu</target>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Table C4BC Extension Object - Field Assignable Range Code - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 1651714670 - Field 4000457340 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Business Central Instance</source><target>Instance BC</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table C4BC Extension Object - Field Bus. Central Instance - Property Caption</note>
         </trans-unit>
         <trans-unit id="Table 1651714670 - Field 2280143628 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Business Central Instance Filter</source><target>Filtr instance BC</target>
@@ -334,10 +399,30 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Table C4BC Extension Object Line - Property Caption</note>
         </trans-unit>
+        <trans-unit id="Table 370124952 - Field 3906288239 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Alternate Assignable Range Code</source><target>Kód alternativního přiřaditelného rozsahu</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table C4BC Extension Object Line - Field Alternate Assign. Range Code - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 370124952 - Field 1863913471 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Alternate ID</source><target>Alternativní ID</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table C4BC Extension Object Line - Field Alternate ID - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 370124952 - Field 2451232268 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>AlternateObject ID</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table C4BC Extension Object Line - Field Alternate Object ID - Property Caption</note>
+        </trans-unit>
         <trans-unit id="Table 370124952 - Field 2574063315 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Assignable Range Code</source><target>Kód přiřaditelného rozsahu</target>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Table C4BC Extension Object Line - Field Assignable Range Code - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 370124952 - Field 4000457340 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Business Central Instance</source><target>Instance BC</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table C4BC Extension Object Line - Field Bus. Central Instance - Property Caption</note>
         </trans-unit>
         <trans-unit id="Table 370124952 - Field 2280143628 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Business Central Instance Filter</source><target>Filtr instance BC</target>
@@ -354,10 +439,20 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Table C4BC Extension Object Line - Field Created By - Property Caption</note>
         </trans-unit>
+        <trans-unit id="Table 370124952 - Field 2084357865 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Extends Object Name</source><target>Název rozšířeného objektu</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table C4BC Extension Object Line - Field Extends Object Name - Property Caption</note>
+        </trans-unit>
         <trans-unit id="Table 370124952 - Field 460859576 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Extension Code</source><target>Kód rozšíření</target>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Table C4BC Extension Object Line - Field Extension Code - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 370124952 - Field 4230870456 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>ID</source><target>ID</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table C4BC Extension Object Line - Field Extension ID - Property Caption</note>
         </trans-unit>
         <trans-unit id="Table 370124952 - Field 3641927271 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>ID</source><target>ID</target>
@@ -383,16 +478,6 @@
           <source>Extension Usage</source><target>Použití rozšíření</target>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Table C4BC Extension Usage - Property Caption</note>
-        </trans-unit>
-        <trans-unit id="Table 4050078670 - Method 804474859 - NamedType 1928203577" size-unit="char" translate="yes" xml:space="preserve">
-          <source>The record can not be renamed.</source><target>Záznam nemůže být přejmenován.</target>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Table C4BC Extension Usage - Method OnRename - NamedType CannotBeRenamedErr</note>
-        </trans-unit>
-        <trans-unit id="Table 4050078670 - Method 2914011859 - NamedType 2665035055" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Extension with %1 = %2 has to have usage in one Business Central instance only.</source><target>Rozšíření s %1 = %2 musí mít definováno použití pouze v jedné instanci BC.</target>
-          <note from="Developer" annotates="general" priority="2">%1 - Field Caption, %2 - Field Value</note>
-          <note from="Xliff Generator" annotates="general" priority="3">Table C4BC Extension Usage - Method TestRangesPerInstanceUsage - NamedType ExtensionWithPerRangesMustHaveOnlyOneUsageErr</note>
         </trans-unit>
         <trans-unit id="Table 4050078670 - Field 2772399723 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Business Central Instance Code</source><target>Kód instance BC</target>
@@ -469,11 +554,6 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page C4BC ALRM Setup - Control Minimal API Version - Property ToolTip</note>
         </trans-unit>
-        <trans-unit id="Page 2349809701 - Control 1846057313 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Specifies way how object type configuration is defined and evaluated.</source><target>Určuje způsob, jaký je vyhodnocováno nastavení typů objektů.</target>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Page C4BC ALRM Setup - Control Object Type Implementation - Property ToolTip</note>
-        </trans-unit>
         <trans-unit id="Page 2588326190 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Assignable Range API</source><target>API přiřaditelných rozsahů</target>
           <note from="Developer" annotates="general" priority="2"></note>
@@ -534,6 +614,11 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page C4BC Assignable Range Card - Control Field Ranges - Property Caption</note>
         </trans-unit>
+        <trans-unit id="Page 2652038930 - Control 3507019525 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies whether field IDs are unique for extended object or for every extension object.</source><target>Určuje, za jsou ID polí unikátní pro rozšiřovaný objekt nebo pro každý objekt</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page C4BC Assignable Range Card - Control Field ID Generation Scope - Property ToolTip</note>
+        </trans-unit>
         <trans-unit id="Page 2652038930 - Control 692597549 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
           <source>Specifies ID of the field that is the first assignable ID for all object types.</source><target>Určuje nejnižší ID pro přiřazování ID polí.</target>
           <note from="Developer" annotates="general" priority="2"></note>
@@ -543,6 +628,11 @@
           <source>Specifies ID of the field that is the last assignable ID for all object types.</source><target>Určuje nejvyšší ID pro přiřazování ID polí.</target>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page C4BC Assignable Range Card - Control Field Range To - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 2652038930 - Control 3090060823 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies whether system should fill gaps in ID ranges when assigning new field ID. This can lead to slower performance of assigning process.</source><target>Určuje, zda má systém vyplňovat mezery v přiřazených (použitých) ID polí. Tato volba může vést k nižší výkonnosti procesu přiřazování nových ID.</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page C4BC Assignable Range Card - Control Fill Field ID Gaps - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="Page 2652038930 - Control 2002987597 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>No. Series</source><target>Číselná řada</target>
@@ -700,19 +790,24 @@
           <note from="Xliff Generator" annotates="general" priority="3">Page C4BC Bus. Central Inst. List - Action Usage - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="Page 1947454813 - Action 1510562767 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Usage</source><target>Použití</target>
+          <source>Usage</source><target>Spotřeba</target>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page C4BC Bus. Central Inst. List - Action Usage - Property Caption</note>
-        </trans-unit>
-        <trans-unit id="Page 320921337 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Extension API</source><target>API rozšíření</target>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Page C4BC Extension API - Property Caption</note>
         </trans-unit>
         <trans-unit id="Page 4019681873 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Extension API</source><target>API rozšíření</target>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page C4BC Extension API v1.1 - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 4019681873 - Method 4277726040 - NamedType 2500559840" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Alternate object field ID %1 for object type %2 was not found.</source>
+          <note from="Developer" annotates="general" priority="2">%1 - Received field ID, %2 - Received object type</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page C4BC Extension API v1.1 - Method CreateObjectFieldOrValueWithOwnID - NamedType AlternateObjectFieldIDNotFoundErr</note>
+        </trans-unit>
+        <trans-unit id="Page 4019681873 - Method 1617297172 - NamedType 1531454778" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Alternate object ID %1 for object type %2 was not found.</source>
+          <note from="Developer" annotates="general" priority="2">%1 - Received object ID, %2 - Received object type</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page C4BC Extension API v1.1 - Method CreateObjectWithOwnID - NamedType AlternateObjectIDNotFoundErr</note>
         </trans-unit>
         <trans-unit id="Page 1537001501 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Extension Card</source><target>Karta rozšíření</target>
@@ -724,10 +819,20 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page C4BC Extension Card - Control General - Property Caption</note>
         </trans-unit>
+        <trans-unit id="Page 1537001501 - Control 3906288239 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Defines alternate type of the id range used for this extension. This range is not mandatory and can be used for example to define a range for AppSource range.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page C4BC Extension Card - Control Alternate Assign. Range Code - Property ToolTip</note>
+        </trans-unit>
         <trans-unit id="Page 1537001501 - Control 2574063315 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
           <source>Defines type of the id range used for this extension</source><target>Určuje typ přiřaditelného rozsahu, který rozšíření používá.</target>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page C4BC Extension Card - Control Assignable Range Code - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 1537001501 - Control 3357424117 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies Business Central instance that is used to assign ids for this extension. This setting is used only for ranges per BC instance.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page C4BC Extension Card - Control BC Instance for Assign. Range - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="Page 1537001501 - Control 3461834954 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
           <source>Description of the extension</source><target>Popis rozšíření</target>
@@ -775,7 +880,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">Page C4BC Extension Card - Action Usage - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="Page 1537001501 - Action 1510562767 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Usage</source><target>Použití</target>
+          <source>Usage</source><target>Spotřeba</target>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page C4BC Extension Card - Action Usage - Property Caption</note>
         </trans-unit>
@@ -783,6 +888,11 @@
           <source>Extension List</source><target>Přehled rozšíření</target>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page C4BC Extension List - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 1080754119 - Control 3906288239 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Defines alternate type of the id range used for this extension. This range is not mandatory and can be used for example to define a range for AppSource range.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page C4BC Extension List - Control Alternate Assign. Range Code - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="Page 1080754119 - Control 2574063315 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
           <source>Defines type of the id range used for this extension</source><target>Určuje typ přiřaditelného rozsahu, který rozšíření používá.</target>
@@ -830,7 +940,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">Page C4BC Extension List - Action Usage - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="Page 1080754119 - Action 1510562767 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Usage</source><target>Použití</target>
+          <source>Usage</source><target>Spotřeba</target>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page C4BC Extension List - Action Usage - Property Caption</note>
         </trans-unit>
@@ -839,25 +949,20 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page C4BC Extension Obj.L. API v1.1 - Property Caption</note>
         </trans-unit>
-        <trans-unit id="Page 4121397782 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Extension Object API</source><target>API objektů rozšíření</target>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Page C4BC Extension Object API - Property Caption</note>
-        </trans-unit>
         <trans-unit id="Page 2963857014 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Extension Object API</source><target>API objektů rozšíření</target>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page C4BC Extension Object API v1.1 - Property Caption</note>
         </trans-unit>
-        <trans-unit id="Page 2028042988 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Extension Object Lines API</source><target>API řádků objektů rozšíření</target>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Page C4BC Extension Object L. API - Property Caption</note>
-        </trans-unit>
         <trans-unit id="Page 2428488697 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Extension Object Lines</source><target>Řádky objektu</target>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page C4BC Extension Object Lines - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 2428488697 - Control 1863913471 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies alternate ID of the field. Alternate ID is not mandatory and can be generated only when the extension has alternate assignable range defined.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page C4BC Extension Object Lines - Control Alternate ID - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="Page 2428488697 - Control 2369664869 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
           <source>Specifies user who created this record (who requested new object line ID).</source><target>Určuje uživatele, který záznam vytvořil (který provedl žádost o nové ID)</target>
@@ -873,6 +978,11 @@
           <source>Specifies name of the field. The evidence of field names is optional.</source><target>Určuje název pole. Evidence názvů jednotlivých polí je volitelná.</target>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page C4BC Extension Object Lines - Control Name - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 999284711 - Control 2451232268 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies alternate ID of the object. Alternate ID is not mandatory and can be generated only when the extension has alternate assignable range defined.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page C4BC Extension Subform - Control Alternate Object ID - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="Page 999284711 - Control 2369664869 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
           <source>Created By</source><target>Vytvořil(a)</target>
@@ -940,7 +1050,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">Page C4BC Extension Usage List - Action Extension - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="Page 3769638924 - Action 3979136067 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Extension</source><target>Rozšíření</target>
+          <source>Extension</source><target>Klapka</target>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page C4BC Extension Usage List - Action Extension - Property Caption</note>
         </trans-unit>
@@ -1010,7 +1120,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">Report C4BC Create License File - Control ToDateField - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="Report 1914339001 - Control 3249287415 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source>To Date</source><target>K datu</target>
+          <source>To Date</source><target>Do data</target>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Report C4BC Create License File - Control ToDateField - Property Caption</note>
         </trans-unit>
@@ -1060,7 +1170,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">Enum C4BC Object Type - EnumValue Interface - Property Caption</note>
         </trans-unit>
         <trans-unit id="Enum 3476159189 - EnumValue 438909893 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Page</source><target>Page</target>
+          <source>Page</source><target>Strana</target>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Enum C4BC Object Type - EnumValue Page - Property Caption</note>
         </trans-unit>
@@ -1075,7 +1185,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">Enum C4BC Object Type - EnumValue Page Extension - Property Caption</note>
         </trans-unit>
         <trans-unit id="Enum 3476159189 - EnumValue 3338462467 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Permission Set</source><target>Permission Set</target>
+          <source>Permission Set</source><target>Sada oprávnění</target>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Enum C4BC Object Type - EnumValue Permission Set - Property Caption</note>
         </trans-unit>
@@ -1085,17 +1195,17 @@
           <note from="Xliff Generator" annotates="general" priority="3">Enum C4BC Object Type - EnumValue Permission Set Extension - Property Caption</note>
         </trans-unit>
         <trans-unit id="Enum 3476159189 - EnumValue 596358669 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Profile</source><target>Profile</target>
+          <source>Profile</source><target>Profil</target>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Enum C4BC Object Type - EnumValue Profile - Property Caption</note>
         </trans-unit>
         <trans-unit id="Enum 3476159189 - EnumValue 1269526094 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Query</source><target>Query</target>
+          <source>Query</source><target>Dotaz</target>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Enum C4BC Object Type - EnumValue Query - Property Caption</note>
         </trans-unit>
         <trans-unit id="Enum 3476159189 - EnumValue 3375155882 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Report</source><target>Report</target>
+          <source>Report</source><target>Sestava</target>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Enum C4BC Object Type - EnumValue Report - Property Caption</note>
         </trans-unit>
@@ -1105,7 +1215,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">Enum C4BC Object Type - EnumValue Report Extension - Property Caption</note>
         </trans-unit>
         <trans-unit id="Enum 3476159189 - EnumValue 1500409770 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Table</source><target>Table</target>
+          <source>Table</source><target>Tabulka</target>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Enum C4BC Object Type - EnumValue Table - Property Caption</note>
         </trans-unit>

@@ -69,6 +69,11 @@ table 80001 "C4BC Assignable Range Header"
                 AssignableRangeLine.ModifyAll("Fill Object ID Gaps", Rec."Fill Object ID Gaps");
             end;
         }
+        field(13; "Fill Field ID Gaps"; Boolean)
+        {
+            Caption = 'Fill Field ID Gaps';
+            DataClassification = SystemMetadata;
+        }
         field(15; "Default Object Range From"; Integer)
         {
             Caption = 'Default Object Range From';
@@ -113,6 +118,30 @@ table 80001 "C4BC Assignable Range Header"
             begin
                 // TODO validate change to default field range
                 // ValidateChangeToDefaultRanges(RangeType::"To", xRec."Default Object Range To", Rec."Default Object Range To");
+            end;
+        }
+        field(19; "Field ID Generation Scope"; Option)
+        {
+            Caption = 'Field ID Generation Scope';
+            OptionMembers = Global,"Extended Object";
+            OptionCaption = 'Global,Extended Object';
+            DataClassification = SystemMetadata;
+
+            trigger OnValidate()
+            var
+                C4BCExtensionObjectLine: Record "C4BC Extension Object Line";
+                ConfirmChangeQst: Label 'This change will impact how field IDs are generated for new fields and cannot be reverted. Are you sure you want to proceed?', Comment = '#tr{"cs-CZ": "Tato změna ovlivní způsob generování ID polí pro nová pole a nelze ji vrátit zpět. Opravdu chcete pokračovat?"}';
+                CannotChangeErr: Label 'The field ID generation scope can not be changed due to existing extension lines linked to this assignable range.', Comment = '#tr{"cs-CZ": "Rozsah generování ID polí nelze změnit kvůli existujícím řádkům rozšíření propojených s tímto přiřaditelným rozsahem."}';
+            begin
+                if (xRec."Field ID Generation Scope" <> Rec."Field ID Generation Scope") and (Rec."Field ID Generation Scope" = Rec."Field ID Generation Scope"::"Extended Object") then
+                    if not Confirm(ConfirmChangeQst) then
+                        Error('');
+
+                if (xRec."Field ID Generation Scope" <> Rec."Field ID Generation Scope") and (xRec."Field ID Generation Scope" = xRec."Field ID Generation Scope"::"Extended Object") then begin
+                    C4BCExtensionObjectLine.SetRange("Assignable Range Code", Rec.Code);
+                    if not C4BCExtensionObjectLine.IsEmpty() then
+                        Error(CannotChangeErr);
+                end;
             end;
         }
         field(25; "Object Name Template"; Text[30])
@@ -363,15 +392,33 @@ table 80001 "C4BC Assignable Range Header"
     /// <param name="ForObjectType">Enum "C4BC Object Type", The object type for which we want the field ID</param>
     /// <param name="ForBusinessCentralInstance">Code[20], Code of the business central instance on which the object is used.</param>
     /// <returns>Return variable "Integer" - specifies field ID which is the next in row and is still unused.</returns>
+    [Obsolete('Replaced by GetNewFieldID(ForObjectType, ForBusinessCentralInstance, ExtendsObjectName)', '2026-01')]
     procedure GetNewFieldID(ForObjectType: Enum "C4BC Object Type"; ForBusinessCentralInstance: Code[20]): Integer
+    var
+    begin
+        GetNewFieldID(ForObjectType, forBusinessCentralInstance, '');
+    end;
+
+    /// <summary> 
+    /// Allows to get new unused field ID for specified object type
+    /// </summary>
+    /// <param name="ForObjectType"> "C4BC Object Type", The object type for which we want the field ID</param>
+    /// <param name="ForBusinessCentralInstance">Code[20], Code of the business central instance on which the object is used.</param>
+    /// <param name="ExtendsObjectName">Text[100], Name of the object being extended (used when Field ID Generation Scope = Extended Object).</param>
+    /// <returns>Return variable "Integer" - specifies field ID which is the next in row and is still unused.</returns>
+    procedure GetNewFieldID(ForObjectType: Enum "C4BC Object Type"; ForBusinessCentralInstance: Code[20]; ExtendsObjectName: Text[100]): Integer
     var
         C4BCExtensionObjectLine: Record "C4BC Extension Object Line";
 
         NewFieldID, LastUsedFieldID : Integer;
         NoAvailableFieldIDsErr: Label 'There are no available field IDs for a new field.';
+        MissingExtendsObjectNameErr: Label 'When Field ID Generation Scope = Extended Object, the Extends Object Name must be specified.';
     begin
         if Rec."Ranges per BC Instance" and (ForBusinessCentralInstance = '') then
             Error(MissingParameterErr, Rec.FieldCaption("Ranges per BC Instance"));
+
+        if (Rec."Field ID Generation Scope" = Rec."Field ID Generation Scope"::"Extended Object") and (ExtendsObjectName = '') then
+            Error(MissingExtendsObjectNameErr);
 
         C4BCExtensionObjectLine.SetCurrentKey("Object Type", "ID");
         C4BCExtensionObjectLine.SetAscending("ID", true);
@@ -383,6 +430,9 @@ table 80001 "C4BC Assignable Range Header"
         if Rec."Ranges per BC Instance" then
             C4BCExtensionObjectLine.SetRange("Bus. Central Instance", ForBusinessCentralInstance);
 
+        if Rec."Field ID Generation Scope" = Rec."Field ID Generation Scope"::"Extended Object" then
+            C4BCExtensionObjectLine.SetRange("Extends Object Name", ExtendsObjectName);
+
         // Find last used object field ID (primary or alternate)
         if C4BCExtensionObjectLine.FindLast() then
             LastUsedFieldID := C4BCExtensionObjectLine.ID;
@@ -391,19 +441,28 @@ table 80001 "C4BC Assignable Range Header"
         C4BCExtensionObjectLine.SetCurrentKey("Object Type", "Alternate ID");
         C4BCExtensionObjectLine.SetAscending("Alternate ID", true);
         C4BCExtensionObjectLine.SetRange("Alternate Assign. Range Code", Rec."Code");
+        C4BCExtensionObjectLine.SetFilter("Alternate ID", '<>0');
         if C4BCExtensionObjectLine.FindLast() then
             if LastUsedFieldID < C4BCExtensionObjectLine."Alternate ID" then
                 LastUsedFieldID := C4BCExtensionObjectLine."Alternate ID";
+        C4BCExtensionObjectLine.SetRange("Alternate ID");
 
-        if LastUsedFieldID <> 0 then begin
-            NewFieldID := LastUsedFieldID + 1;
-            if IsObjectFieldIDFromRange(ForObjectType, NewFieldID) then
-                exit(NewFieldID);
-            Error(NoAvailableFieldIDsErr);
+        // No ID in use yet, find the first one
+        if LastUsedFieldID = 0 then begin
+            Rec.TestField("Field Range From");
+            exit(Rec."Field Range From");
         end;
 
-        Rec.TestField("Field Range From");
-        exit(Rec."Field Range From");
+        // Try to find gap in already assigned field IDs (both primary & alternate IDs are considered)
+        if FindGapInFieldIDRange(C4BCExtensionObjectLine, ForObjectType, NewFieldID) then
+            exit(NewFieldID);
+
+        // Get next ID after the last used one (if the ID is within allowed ranges)
+        NewFieldID := LastUsedFieldID + 1;
+        if IsObjectFieldIDFromRange(ForObjectType, NewFieldID) then
+            exit(NewFieldID);
+
+        Error(NoAvailableFieldIDsErr);
     end;
 
     /// <summary> 
@@ -570,6 +629,42 @@ table 80001 "C4BC Assignable Range Header"
         exit(false);
     end;
 
+    local procedure FindGapInFieldIDRange(var C4BCExtensionObjectLine: Record "C4BC Extension Object Line"; ForObjectType: Enum "C4BC Object Type"; var NewFieldID: Integer): Boolean
+    var
+        TempPlanningBuffer: Record "Planning Buffer" temporary;
+        IDDiff, PrevID : Integer;
+    begin
+        if not Rec."Fill Field ID Gaps" then
+            exit(false);
+
+        InitUsedFieldIDBuffer(C4BCExtensionObjectLine, TempPlanningBuffer);
+
+        PrevID := 0;
+        IDDiff := Rec."Field Range To" - Rec."Field Range From" + 1;
+        TempPlanningBuffer.SetRange("Buffer No.", Rec."Field Range From", Rec."Field Range To");
+
+        if IDDiff > TempPlanningBuffer.Count() then begin
+            TempPlanningBuffer.SetRange("Buffer No.");
+            if TempPlanningBuffer.FindSet() then
+                repeat
+                    if PrevID = 0 then begin
+                        NewFieldID := Rec."Field Range From";
+                        if TempPlanningBuffer."Buffer No." <> NewFieldID then
+                            if IsObjectFieldIDFromRange(ForObjectType, NewFieldID) then
+                                exit(true);
+                    end else begin
+                        NewFieldID := PrevID + 1;
+                        if (NewFieldID < TempPlanningBuffer."Buffer No.") and IsObjectFieldIDFromRange(ForObjectType, NewFieldID) then
+                            exit(true);
+                    end;
+                    PrevID := TempPlanningBuffer."Buffer No.";
+                until TempPlanningBuffer.Next() < 1;
+        end;
+
+        Clear(NewFieldID);
+        exit(false);
+    end;
+
     local procedure InitUsedIDBuffer(var C4BCExtensionObject: Record "C4BC Extension Object"; ForObjectType: Enum "C4BC Object Type"; var TempPlanningBuffer: Record "Planning Buffer" temporary)
     var
         C4BCExtensionObject2: Record "C4BC Extension Object";
@@ -607,5 +702,38 @@ table 80001 "C4BC Assignable Range Header"
                 TempPlanningBuffer."Buffer No." := C4BCExtensionObject2."Alternate Object ID";
                 if not TempPlanningBuffer.Insert() then;
             until C4BCExtensionObject2.Next() < 1;
+    end;
+
+    local procedure InitUsedFieldIDBuffer(var C4BCExtensionObjectLine: Record "C4BC Extension Object Line"; var TempPlanningBuffer: Record "Planning Buffer" temporary)
+    var
+        C4BCExtensionObjectLine2: Record "C4BC Extension Object Line";
+        AssignableRangeCode: Code[20];
+        NoAssignableRangeDefinedErr: Label 'No assignable range defined for the newly generated field ID. It is programming error.';
+    begin
+        TempPlanningBuffer.Reset();
+        TempPlanningBuffer.DeleteAll();
+
+        AssignableRangeCode := CopyStr(C4BCExtensionObjectLine.GetFilter("Assignable Range Code"), 1, MaxStrLen(AssignableRangeCode));
+        if AssignableRangeCode = '' then
+            AssignableRangeCode := CopyStr(C4BCExtensionObjectLine.GetFilter("Alternate Assign. Range Code"), 1, MaxStrLen(AssignableRangeCode));
+        if AssignableRangeCode = '' then
+            Error(NoAssignableRangeDefinedErr);
+
+        C4BCExtensionObjectLine2.Copy(C4BCExtensionObjectLine);
+        C4BCExtensionObjectLine2.SetRange("Alternate Assign. Range Code");
+        C4BCExtensionObjectLine2.SetRange("Assignable Range Code", AssignableRangeCode);
+        if C4BCExtensionObjectLine2.FindSet() then
+            repeat
+                TempPlanningBuffer."Buffer No." := C4BCExtensionObjectLine2.ID;
+                if not TempPlanningBuffer.Insert() then;
+            until C4BCExtensionObjectLine2.Next() < 1;
+
+        C4BCExtensionObjectLine2.SetRange("Assignable Range Code");
+        C4BCExtensionObjectLine2.SetRange("Alternate Assign. Range Code", AssignableRangeCode);
+        if C4BCExtensionObjectLine2.FindSet() then
+            repeat
+                TempPlanningBuffer."Buffer No." := C4BCExtensionObjectLine2."Alternate ID";
+                if not TempPlanningBuffer.Insert() then;
+            until C4BCExtensionObjectLine2.Next() < 1;
     end;
 }

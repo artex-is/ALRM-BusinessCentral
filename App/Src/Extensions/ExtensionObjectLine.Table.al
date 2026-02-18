@@ -99,6 +99,13 @@ table 80006 "C4BC Extension Object Line"
             Caption = 'Alternate ID';
             DataClassification = CustomerContent;
         }
+        field(200; "Extends Object Name"; Text[100])
+        {
+            Caption = 'Extends Object Name';
+            Editable = false;
+            FieldClass = FlowField;
+            CalcFormula = lookup("C4BC Extension Object"."Extends Object Name" where("Extension Code" = field("Extension Code"), "Object Type" = field("Object Type"), "Object ID" = field("Object ID")));
+        }
     }
 
     keys
@@ -152,7 +159,8 @@ table 80006 "C4BC Extension Object Line"
 
         C4BCExtensionHeader.Get(Rec."Extension Code");
         C4BCAssignableRangeHeader.Get(AssignableRangeCode);
-        exit(C4BCAssignableRangeHeader.GetNewFieldID(Rec."Object Type", C4BCExtensionHeader.GetUsageOfExtension()));
+        Rec.CalcFields("Extends Object Name");
+        exit(C4BCAssignableRangeHeader.GetNewFieldID(Rec."Object Type", C4BCExtensionHeader.GetUsageOfExtension(), Rec."Extends Object Name"));
     end;
 
     /// <summary>

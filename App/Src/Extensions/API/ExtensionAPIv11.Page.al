@@ -161,6 +161,39 @@ page 79513 "C4BC Extension API v1.1"
 
     [ServiceEnabled]
     /// <summary>
+    /// Create new object field for tableextensions or object value for enumextensions.
+    /// </summary>
+    /// <param name="ObjectType">Enum "C4BC Object Type", Specifies type of the object that should be registered.</param>
+    /// <param name="ObjectID">Integer, Specifies Object ID</param>
+    /// <param name="ExtendsObjectName">Text[100], Specifies name of object that is extended. Can be filled in for extension objects only.</param>
+    /// <param name="CreatedBy">Text[50], Specifies user who requested new ID.</param>
+    /// <returns>Return variable "Integer", ID of the object line.</returns>
+    procedure CreateObjectFieldOrValueV2(ObjectType: Enum "C4BC Object Type"; ObjectID: Integer; ExtendsObjectName: Text[100]; CreatedBy: Text[50]): Integer
+    var
+        C4BCALRMSetup: Record "C4BC ALRM Setup";
+        C4BCExtensionObject: Record "C4BC Extension Object";
+        C4BCExtensionObjectLine: Record "C4BC Extension Object Line";
+    begin
+        C4BCALRMSetup.FindFirst();
+        C4BCALRMSetup.CheckAPIVersion(C4BCALRMSetup."Minimal API Version"::"v1.1");
+
+        if ExtendsObjectName <> '' then
+            if C4BCExtensionObject.Get(Rec.Code, ObjectType, ObjectID) then begin
+                C4BCExtensionObject.Validate("Extends Object Name", ExtendsObjectName);
+                C4BCExtensionObject.Modify(true);
+            end;
+
+        C4BCExtensionObjectLine.Init();
+        C4BCExtensionObjectLine.Validate("Extension Code", Rec."Code");
+        C4BCExtensionObjectLine.Validate("Object Type", ObjectType);
+        C4BCExtensionObjectLine.Validate("Object ID", ObjectID);
+        C4BCExtensionObjectLine.Validate("Created By", CreatedBy);
+        C4BCExtensionObjectLine.Insert(true);
+        exit(C4BCExtensionObjectLine.ID);
+    end;
+
+    [ServiceEnabled]
+    /// <summary>
     /// Create new object field for tableextensions or object value for enumextensions with existing ID.
     /// </summary>
     /// <param name="ObjectType">Enum "C4BC Object Type", Specifies type of the object that should be registered.</param>
